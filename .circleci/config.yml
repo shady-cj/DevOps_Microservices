@@ -9,6 +9,7 @@ jobs:
           name: Install requirements 
           command: |
             cd Lesson-3-Containerization/python-helloworld
+            apk add --update make
             make setup
             source .flask-app/bin/activate
             make install
@@ -31,6 +32,7 @@ jobs:
             mv hadolint-Linux-x86_64 hadolint
             chmod +x hadolint
             sudo mv hadolint usr/local/bin
+            apk add --update make
       - run:
           name: Linting the python code and Dockerfile
           command: |
