@@ -1,7 +1,7 @@
 setup:
-	python -m venv ~/.flask-app
+	python3 -m venv .flask-app && source .flask-app/bin/activate
 install:
-	pip install --upgrade pip && pip install -r requirements.txt
+	pip3 install --upgrade pip && pip install -r requirements.txt
 lint:
 	hadolint Dockerfile
 	pylint --disable=R,C,W1203 ./**.py

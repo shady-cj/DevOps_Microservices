@@ -1,0 +1,46 @@
+version: 2.1
+jobs:
+  setup:
+    docker:
+      - image: python:3.7-alpine3.16
+    steps:
+      - checkout
+      - run:
+          name: Install requirements 
+          command: |
+            cd Lesson-3-Containerization/python-helloworld
+            make setup
+            source .flask-app/bin/activate
+            make install
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./.flask-app
+
+    Lint:
+      docker:
+        - image: python:3.7-alpine3.16
+      steps:
+        - checkout
+        - attach_workspace:
+            at: ./
+        - run:
+            name: Install hadolint for Dockerfile linting
+            command: |
+              wget https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64
+              mv hadolint-Linux-x86_64 hadolint
+              chmod +x hadolint
+              sudo mv hadolint usr/local/bin
+        - run:
+            name: Linting the python code and Dockerfile
+            command: |
+              source .flask-app/bin/activate
+              make lint
+workflows:
+  main:
+    jobs:
+      - setup
+      - Lint:
+          requires:
+            setup
+
