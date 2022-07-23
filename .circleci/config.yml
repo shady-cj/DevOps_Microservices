@@ -15,9 +15,9 @@ jobs:
             source .flask-app/bin/activate
             make install
       - persist_to_workspace:
-          root: ./
+          root: ./Lesson-3-Containerization/python-helloworld
           paths:
-            - ./.flask-app
+            - ./Lesson-3-Containerization/python-helloworld/.flask-app
 
   Lint:
     docker:
@@ -25,7 +25,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: ./Lesson-3-Containerization/python-helloworld
       - run:
           name: Install hadolint for Dockerfile linting
           command: |
@@ -37,6 +37,7 @@ jobs:
       - run:
           name: Linting the python code and Dockerfile
           command: |
+            cd ./Lesson-3-Containerization/python-helloworld
             source .flask-app/bin/activate
             make lint
 workflows:
