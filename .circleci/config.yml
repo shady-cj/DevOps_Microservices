@@ -11,6 +11,7 @@ jobs:
             cd Lesson-3-Containerization/python-helloworld
             apk add --update make
             make setup
+            apk add build-base
             source .flask-app/bin/activate
             make install
       - persist_to_workspace:
