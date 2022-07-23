@@ -18,7 +18,7 @@ jobs:
       - persist_to_workspace:
           root: ./Lesson-3-Containerization/python-helloworld
           paths:
-            - ./Lesson-3-Containerization/python-helloworld/.flask-app
+            - ./.flask-app
 
   Lint:
     docker:
