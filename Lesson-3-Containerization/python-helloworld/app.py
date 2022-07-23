@@ -1,9 +1,10 @@
 from flask import Flask
 from flask import json
 import logging
+from flask.logging import create_logger
 
 app = Flask(__name__)
-
+app.logger = create_logger(app)
 @app.route('/status')
 def healthcheck():
     response = app.response_class(

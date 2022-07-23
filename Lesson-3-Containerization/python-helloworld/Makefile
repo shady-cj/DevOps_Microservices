@@ -1,5 +1,5 @@
 setup:
-	python3 -m venv .flask-app && source .flask-app/bin/activate
+	python3 -m venv .flask-app
 install:
 	pip3 install --upgrade pip && pip install -r requirements.txt
 lint:
